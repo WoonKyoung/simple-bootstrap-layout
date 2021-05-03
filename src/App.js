@@ -7,6 +7,7 @@ import Overview from "./pages/Overview/Overview";
 import Orders from "./pages/Orders/Orders";
 import Schedule from "./pages/Schedule/Schedule";
 import Subscriptions from "./pages/Subscriptions/Subscriptions";
+import styled from "styled-components";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           </Switch>
         </Layout>
     </Router>
+
   );
 }
 

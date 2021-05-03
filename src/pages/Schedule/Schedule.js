@@ -1,5 +1,5 @@
 
-function Schedule(){
+const Schedule = () => {
     return(
         <div>
             Schedule

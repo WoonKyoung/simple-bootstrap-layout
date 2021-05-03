@@ -1,5 +1,5 @@
 
-function Orders(){
+const Orders = () => {
     return(
         <div>
             Orders

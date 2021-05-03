@@ -1,5 +1,5 @@
 
-function Overview(){
+const Overview = () => {
     return(
         <div>
             Overview

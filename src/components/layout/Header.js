@@ -1,6 +1,6 @@
 import Tooltip from "../../ui/Tooltip";
 
-function Header({ toggle }) {
+const Header = ({ toggle }) => {
 
   return (
     <>

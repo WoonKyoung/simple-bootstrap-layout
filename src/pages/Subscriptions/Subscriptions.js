@@ -1,5 +1,5 @@
 
-function Subscriptions(){
+const Subscriptions = () => {
     return(
         <div>
             Subscriptions

@@ -126,6 +126,8 @@ const GlobalStyle = createGlobalStyle`
         clip: rect(1px, 1px, 1px, 1px);
         opacity: 0;
     }
+    
+    
 `;
 
 export default GlobalStyle;
