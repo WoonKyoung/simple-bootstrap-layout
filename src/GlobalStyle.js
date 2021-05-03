@@ -1,8 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import resetStyle from './resetStyle';
-
+import { styles } from "./styles.css"
 const breakpoints = {
-    desktop: '920px',
+    desktop: '720px',
 }
 
 const GlobalStyle = createGlobalStyle`
@@ -65,7 +64,7 @@ const GlobalStyle = createGlobalStyle`
         --height-button: var(--space-4);
         --min-width-button: var(--space-4);
         --px-button: var(--space-2);
-        --navbar-width: 256px;
+        --navbar-width: 244px;
 
         @media(max-width: ${breakpoints.desktop}) {
             --height-button: calc(var(--space-4) + 8px);
@@ -73,11 +72,10 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 
-    ${resetStyle}
-
+    ${styles}
+    
     body {
-        font-size: var(--fsize-3);
-        font-family: var(--primary-font);
+        font-size: var(--fsize-5);
         background-color: var(--color-light);
         color: var(--color-dark);
     }
@@ -108,19 +106,16 @@ const GlobalStyle = createGlobalStyle`
         margin: 15px 0;
     }
     a {
-        text-decoration: none;
-        color: var(--color-primary);
+
     }
     a:hover {
-        text-decoration: underline;
-        color: var(--color-primary-hover);
+
     }
     input {
-        height: 28px;
+        
     }
     textarea {
-        min-width: 220px;
-        min-height: 120px;
+
     }
     
     .visually-hidden {

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import {IconButton} from "../../ui/core";
 
 const StyleNav = styled.nav`
   @media (min-width: 768px) {
@@ -21,23 +22,60 @@ const StyleNav = styled.nav`
   }
 `
 
+const links = [
+    {
+        to: "/dashboard",
+        icon: "fas fa-box",
+        label: "Dashboard",
+    },
+    {
+        to: "/orders",
+        icon: "fas fa-clipboard",
+        label: "Customer Orders",
+    },
+    {
+        to: "/subs",
+        icon: "fas fa-redo-alt",
+        label: "Subscriptions",
+    },
+    {
+        to: "/overview",
+        icon: "fas fa-robot",
+        label: "Overview",
+    },
+    {
+        to: "/schedule",
+        icon: "fas fa-calendar",
+        label: "Schedule",
+    },
+];
+
+
 function Navbar(props) {
-  const [compact, setCompact] = useState(0);
+  const [ compact, setCompact] = useState(0);
   return (
       <>
     <StyleNav {...props}>
         <div className="bg-light border-right" id="sidebar-wrapper">
-            <div className="sidebar-heading">Start Bootstrap</div>
+            <div className="sidebar-heading">React practice</div>
             <div className="list-group list-group-flush">
-                <a className="list-group-item list-group-item-action bg-light" href="#!">Dashboard</a>
-                <a className="list-group-item list-group-item-action bg-light" href="#!">Shortcuts</a>
-                <a className="list-group-item list-group-item-action bg-light" href="#!">Overview</a>
-                <a className="list-group-item list-group-item-action bg-light" href="#!">Events</a>
-                <a className="list-group-item list-group-item-action bg-light" href="#!">Profile</a>
-                <a className="list-group-item list-group-item-action bg-light" href="#!">Status</a>
+                {links.map((i) => (
+                    <IconButton
+                        bg="primary"
+                        icon={i.icon}
+                    />,
+                    <a className="list-group-item list-group-item-action bg-light"
+                       href={i.to}
+                       key={i.to}
+                       label={i.label}
+                     >
+                        {i.label}
+                    </a>
+                ))}
             </div>
         </div>
     </StyleNav>
+
       </>
   );
 }

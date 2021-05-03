@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React, { useState, useRef } from "react";
 import Portal from "./core/Portal";
+import { breakpoints as bp } from "../GlobalStyle";
 
 const StyledTooltip = styled.span.attrs((p) => ({
   bg: p.bg || 'dark',

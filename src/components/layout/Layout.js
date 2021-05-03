@@ -28,7 +28,7 @@ function Layout({ children }) {
   const [showNav, setShowNav] = useState(0);
   const toggle = () => setShowNav(Number(!showNav));
 
-  if(showNav != 0){
+  if(showNav !== 0){
     //console.log('토글 작동');
   }
 
