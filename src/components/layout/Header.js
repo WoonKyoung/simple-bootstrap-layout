@@ -18,7 +18,7 @@ const Header = ({ toggle }) => {
                       </button>
                   </form>
                   <Tooltip bg="primary" text={"로그인정보"}>
-                      <i class = "fas fa-user fa-2x" style = {{margin : '5px'}} />
+                      <i className = "fas fa-user fa-2x" style = {{margin : '5px'}} />
                   </Tooltip>
               </div>
           </nav>
