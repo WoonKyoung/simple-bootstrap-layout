@@ -11,7 +11,6 @@ const ButtonStyled = styled.button`
   ${props => {
     return props.outline && css`
       border: 1px solid lightgray;
-
     `;
   }}
 `
@@ -20,6 +19,7 @@ function Button({loading,label ,...rest}){
     return(
             <ButtonStyled disabled={loading} {...rest} >
                 {loading ? "Loading" : label }
+
             </ButtonStyled>
     );
 }

@@ -70,23 +70,12 @@ const ModalOverlay = styled.div`
 
 function Modal(props) {
 
-    const handleEscape = useCallback(event => {
-        if (event === 27) props.close()
-    }, [props.show])
-
-    useEffect(()=> {
-        if(props.show) document.addEventListener('keydown', handleEscape, false)
-        return() => {
-            document.removeEventListener('keydown',handleEscape,false)
-        }
-    }, [props.show])
-
     return (
         <ModalWrapper show={props.show} >
             <ModalOverlay onClick={props.close}/>
             <ModalContent width={props.width} height={props.height}>
                 <div className="scroller">
-                    <h2 className="title">Add new Book</h2>
+                    <h2 className="title">{props.title}</h2>
                     {props.children}
                     <div className="close" onClick={props.close}>x</div>
                 </div>

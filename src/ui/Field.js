@@ -2,14 +2,13 @@ import styled from "styled-components";
 
 const StyledDiv = styled.div`
   margin-bottom : 15px;
-  
 `;
 
 const StyledLabel = styled.label`
   font-weight: bold;
+  margin : 5px;
   
 `;
-
 
 function Field(props){
     return(

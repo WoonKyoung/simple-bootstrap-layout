@@ -56,6 +56,7 @@ const Dashboard = () => {
                 pages: '',
                 publishDate: ''
             });
+            setIsModal(false);
         } catch (e) {
             console.error('An error', error);
             setError('An error occured while trying to save the book');
@@ -69,9 +70,7 @@ const Dashboard = () => {
         <div>
             Dashboard
             <div>
-                <Button onClick={modalShow.bind(this, true)} outline>
-                    Add Book
-                </Button>
+                <Button onClick={modalShow.bind(this, true)} label="Add Book" />
             </div>
             <Modal
                 title="Add new Book"
@@ -109,6 +108,7 @@ const Dashboard = () => {
                     </div>
                     <Message error={error} type="error"/>
                 </form>
+
             </Modal>
 
             <BookList books={books}/>
