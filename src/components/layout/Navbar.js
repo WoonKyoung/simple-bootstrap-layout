@@ -6,7 +6,8 @@ const StyleNav = styled.nav`
     margin-left: ${(p) => p.visible ? 0 : '-15rem' };
     transition: margin 0.25s ease-out;
   }
-`
+`;
+
 const links = [
     {
         to: "/dashboard",

@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import firebase from 'firebase/app';
 import BookList from "../../components/Book/BookList";
-import { Button,Message } from "../../ui";
+import {Button, Field, Message, Modal} from "../../ui";
 
 const Dashboard = () => {
     const db = firebase.firestore();
@@ -15,6 +15,8 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [books, setBooks] = useState([]);
+
+    const [isModal, setIsModal] = useState(false);
 
     useEffect( () => {
         (async () =>{
@@ -61,30 +63,55 @@ const Dashboard = () => {
         setLoading(false);
     };
 
-    return(
+    const modalShow = (v) => setIsModal(v);
+
+    return (
         <div>
             Dashboard
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label htmlFor="book-title"> Title : </label>
-                    <input type="text" value={book.title} onChange={onChange} name="title" id="book-title"/>
-                </div>
-                <div>
-                    <label htmlFor="book-pages"> Pages : </label>
-                    <input type="number" value={book.pages} onChange={onChange} name="pages" id="book-pages"/>
-                </div>
-                <div>
-                    <label htmlFor="book-publish-date"> Publish Date : </label>
-                    <input type="date" value={book.publishDate} onChange={onChange} name="publishDate"
-                           id="book-publish-date"/>
-                </div>
-                <div>
-                    <Button loading={loading} label="Save" type="submit" title="hellow world"/>
-                </div>
-                <Message error={error} type="error" />
-            </form>
+            <div>
+                <Button onClick={modalShow.bind(this, true)} outline>
+                    Add Book
+                </Button>
+            </div>
+            <Modal
+                title="Add new Book"
+                show={isModal}
+                close={modalShow.bind(this, false)}
+            >
+                <form onSubmit={onSubmit}>
+                    <Field labelText="Title : " id="book-title">
+                        <input
+                            type="text"
+                            value={book.title}
+                            onChange={onChange}
+                            name="title"
+                            id="book-title"/>
+                    </Field>
+                    <Field labelText="Pages :" id="book-pages">
+                        <input
+                            type="number"
+                            value={book.pages}
+                            onChange={onChange}
+                            name="pages"
+                            id="book-pages"/>
+                    </Field>
+                    <Field labelText="Publish Date :" id="book-publish-date">
+                        <input
+                            type="date"
+                            value={book.publishDate}
+                            onChange={onChange}
+                            name="publishDate"
+                            id="book-publish-date"/>
+                    </Field>
 
-        <BookList books={books} />
+                    <div>
+                        <Button outline loading={loading} label="Save" type="submit" title="hello world"/>
+                    </div>
+                    <Message error={error} type="error"/>
+                </form>
+            </Modal>
+
+            <BookList books={books}/>
         </div>
     );
 }

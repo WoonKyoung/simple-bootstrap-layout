@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import styled from "styled-components";
-import {BrowserRouter as Router} from "react-router-dom";
-import Modal from "../components/Modal/Modal";
 
 
 const Container = styled.div`
@@ -23,11 +21,6 @@ const Button = styled.button`
 `;
 
 const  Home = () => {
-    const [showModal, setShowModal] = useState(false);
-
-    const openModal = () => {
-        setShowModal(prev => !prev)
-    }
 
     return (
 
@@ -44,10 +37,13 @@ const  Home = () => {
                 <code>#menu-toggle</code>
                 ID which will toggle the menu when clicked.
             </p>
+
+            {/*
             <Container>
                 <Button onClick={openModal}>ddfafd</Button>
-                <Modal showModal = {showModal} setShowModal = {setShowModal} />
+                <Modal showModal = {showModal} setShowModal = {setShowModal} title="Add new Book" />
             </Container>
+            */}
         </div>
     );
 }
