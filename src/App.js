@@ -8,7 +8,6 @@ import Orders from "./pages/Orders/Orders";
 import Schedule from "./pages/Schedule/Schedule";
 import Subscriptions from "./pages/Subscriptions/Subscriptions";
 
-
 function App() {
   return (
     <Router>

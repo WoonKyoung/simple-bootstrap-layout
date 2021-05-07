@@ -1,24 +1,23 @@
 import {useState, useEffect} from 'react'
 import firebase from 'firebase/app';
 import BookList from "../../components/Book/BookList";
-import {Button, Field, Message, Modal} from "../../ui";
+import BookForm from "../../components/Book/BookForm";
+import {Toaster, ToasterContext} from "../../ui";
 
 const Dashboard = () => {
     const db = firebase.firestore();
-
 
     const [book, setBook] = useState({
        title: '',
        pages: '',
        publishDate:''
     });
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+
     const [books, setBooks] = useState([]);
 
-    const [isModal, setIsModal] = useState(false);
+    const [toasts, setToasts] = useState([]);
 
-    useEffect( () => {
+    useEffect(() => {
         (async () =>{
             const snapshot = await db.collection('books').get();
             const booksArray = [];
@@ -29,90 +28,21 @@ const Dashboard = () => {
                 })
             })
             setBooks(booksArray);
+            setToasts(['Rendering current page']);
         })();
-    }, []);
-
-
-    const onChange = (e) => {
-        setBook({
-            ...book,
-            [e.target.name]: e.target.value
-        })
-    };
-
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        console.log(book);
-        setLoading(true);
-
-        try {
-            const docRef = await db.collection("books").add({
-                ...book,
-                publishDate: new Date(book.publishDate)
-            });
-            console.log(docRef.id);
-            setBook({
-                title: '',
-                pages: '',
-                publishDate: ''
-            });
-            setIsModal(false);
-        } catch (e) {
-            console.error('An error', error);
-            setError('An error occured while trying to save the book');
-        }
-        setLoading(false);
-    };
-
-    const modalShow = (v) => setIsModal(v);
+    }, [book]);
 
     return (
-        <div>
-            Dashboard
+        <ToasterContext.Provider value={['toasts']} >
+
             <div>
-                <Button onClick={modalShow.bind(this, true)} label="Add Book" />
+                <BookForm book={book} setBook={setBook} setToasts={setToasts}/>
+
+                <BookList books={books}/>
+
+                <Toaster toasts={toasts}/>
             </div>
-            <Modal
-                title="Add new Book"
-                show={isModal}
-                close={modalShow.bind(this, false)}
-            >
-                <form onSubmit={onSubmit}>
-                    <Field labelText="Title : " id="book-title">
-                        <input
-                            type="text"
-                            value={book.title}
-                            onChange={onChange}
-                            name="title"
-                            id="book-title"/>
-                    </Field>
-                    <Field labelText="Pages :" id="book-pages">
-                        <input
-                            type="number"
-                            value={book.pages}
-                            onChange={onChange}
-                            name="pages"
-                            id="book-pages"/>
-                    </Field>
-                    <Field labelText="Publish Date :" id="book-publish-date">
-                        <input
-                            type="date"
-                            value={book.publishDate}
-                            onChange={onChange}
-                            name="publishDate"
-                            id="book-publish-date"/>
-                    </Field>
-
-                    <div>
-                        <Button outline loading={loading} label="Save" type="submit" title="hello world"/>
-                    </div>
-                    <Message error={error} type="error"/>
-                </form>
-
-            </Modal>
-
-            <BookList books={books}/>
-        </div>
+        </ToasterContext.Provider>
     );
 }
 
